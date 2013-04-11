@@ -59,4 +59,32 @@ describe SignedXml::Document do
   it "verifies docs with one enveloped-signature Resource element and embedded X.509 key" do
     signed_doc.is_verified?.should be true
   end
+
+  let(:badly_signed_doc_nodes) do
+    doc = nil
+    File.open(File.join(resources_path, 'badly_signed_saml_response.xml')) do |file|
+      doc = Nokogiri::XML(file)
+    end
+    doc
+  end
+
+  let(:badly_signed_doc) { SignedXml::Document.new(badly_signed_doc_nodes) }
+
+  it "fails verification of a badly-signed doc" do
+    badly_signed_doc.is_verified?.should be false
+  end
+
+  let(:incorrect_digest_doc_nodes) do
+    doc = nil
+    File.open(File.join(resources_path, 'incorrect_digest_saml_response.xml')) do |file|
+      doc = Nokogiri::XML(file)
+    end
+    doc
+  end
+
+  let(:incorrect_digest_doc) { SignedXml::Document.new(incorrect_digest_doc_nodes) }
+  
+  it "fails verification of a doc with an incorrect Resource digest" do
+    incorrect_digest_doc.is_verified?.should be false
+  end
 end
