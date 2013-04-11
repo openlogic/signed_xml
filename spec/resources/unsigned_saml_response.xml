@@ -1,0 +1,36 @@
+<Response
+  IssueInstant="2003-04-17T00:46:02Z" Version="2.0"
+  ID="_c7055387-af61-4fce-8b98-e2927324b306"
+  xmlns="urn:oasis:names:tc:SAML:2.0:protocol"
+  xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+  <saml:Issuer>https://www.opensaml.org/IDP"</saml:Issuer>
+  <Status>
+    <StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+  </Status>
+  <Assertion ID="_a75adf55-01d7-40cc-929f-dbd8372ebdfc"
+    IssueInstant="2003-04-17T00:46:02Z" Version="2.0"
+    xmlns="urn:oasis:names:tc:SAML:2.0:assertion">
+    <Issuer>https://www.opensaml.org/IDP</Issuer>
+    <Subject>
+      <NameID
+        Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+        scott@example.org
+      </NameID>
+      <SubjectConfirmation
+        Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"/>
+    </Subject>
+    <Conditions NotBefore="2003-04-17T00:46:02Z"
+      NotOnOrAfter="2003-04-17T00:51:02Z">
+      <AudienceRestriction>
+        <Audience>http://www.opensaml.org/SP</Audience>
+      </AudienceRestriction>
+    </Conditions>
+    <AuthnStatement AuthnInstant="2003-04-17T00:46:00Z">
+      <AuthnContext>
+        <AuthnContextClassRef>
+          urn:oasis:names:tc:SAML:2.0:ac:classes:Password
+        </AuthnContextClassRef>
+      </AuthnContext>
+    </AuthnStatement>
+  </Assertion>
+</Response>
