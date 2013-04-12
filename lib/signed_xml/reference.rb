@@ -10,7 +10,13 @@ module SignedXml
       uri = here['URI']
       case uri
       when nil, ""
-        @start = here.document
+        @start = here.document.root
+      when /^#/
+        id = uri.split('#').last
+        raise ArgumentError.new("XPointer expressions like #{id} are not yet supported") if id =~ /^xpointer/
+        # TODO: handle ID attrs with names other than 'ID'
+        @start = here.document.at_xpath("//*[@ID='#{id}']")
+        raise ArgumentError.new("no match found for ID #{id}") if @start.nil?
       else raise ArgumentError.new("unsupported Reference URI #{uri}")
       end
 
@@ -26,17 +32,19 @@ module SignedXml
     def init_transforms
       transforms = []
 
-      here.xpath('//ds:Transform', ds: XMLDSIG_NS).each do |transform_node|
+      here.xpath('.//ds:Transform', ds: XMLDSIG_NS).each do |transform_node|
         method = transform_node['Algorithm']
         case method
         when "http://www.w3.org/2000/09/xmldsig#enveloped-signature"
           transforms << EnvelopedSignatureTransform.new
+        when %r{^http://.*c14n}
+          transforms << C14NTransform.new(method)
         else raise ArgumentError.new("unknown transform method #{method}")
         end
       end
 
-      # TODO: check whether another c14n transform has already been specified.
-      transforms << C14NTransform.new
+      # If no explicit c14n transform is specified, make sure we do one before digesting.
+      transforms << C14NTransform.new unless transforms.last.is_a? C14NTransform
 
       digest_method = here.at_xpath('//ds:DigestMethod/@Algorithm', ds: XMLDSIG_NS).value.strip
       transforms << DigestTransform.new(digest_method)

@@ -1,7 +1,8 @@
 module SignedXml
   class EnvelopedSignatureTransform
     def apply(input)
-      envelope = input.clone
+      envelope = Nokogiri::XML::Document.new
+      envelope.root = input
       envelope.at_xpath('//ds:Signature', ds: XMLDSIG_NS).remove
       envelope
     end

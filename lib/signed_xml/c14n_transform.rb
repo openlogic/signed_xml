@@ -18,7 +18,7 @@ module SignedXml
     end
 
     def apply(input)
-      raise ArgumentError.new("input #{input.class} is not canonicalizable") unless input.respond_to?(:canonicalize)
+      raise ArgumentError.new("input #{input.inspect}:#{input.class} is not canonicalizable") unless input.respond_to?(:canonicalize)
 
       input.canonicalize(method, nil, with_comments)
     end

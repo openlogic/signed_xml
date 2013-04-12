@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="_dd2d35dad58d4ebb9e3ec8e85d3e234da2cd639962" Version="2.0" IssueInstant="2013-04-08T23:13:22Z" Destination="http://localhost:3000/saml-login" InResponseTo="83767498-2df3-4035-b0a5-8b40212b8fd7"><saml:Issuer>http://localhost/simplesaml/saml2/idp/metadata.php</saml:Issuer><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <ds:Reference URI="#_dd2d35dad58d4ebb9e3ec8e85d3e234da2cd639962"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>MNf3EJFKtNqL4VLmjQ3ie/quaEY=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>yrvpPF7jkXgzu00ro5vY3gpHDzP2rsXdNL6aKwlMgjwMF4EG4RxlmYioGS7ioxyo
+AMCF7TUI7NH5CrVEXM56Rl50uEVLsV9ePvyW1OkfxdUrzJtg9fzAW9OwBj/Xa6Kv
+kfvFu2SND/Ak2JV5GJxBI09fANwrq20xGgtQ3gB8XlSArT+Te4XWxWwViCkIq8pQ
+llZYpN5wba0cJ5gF8ukw1Ypf8Do/fQGxjp50C4wDJ557/TwjBZyqJGXOcbkijb7i
+Mit++q4AfEO1zaDT+PbY4YrqH1gUxBLdCcrZI/EakaJHFjdwk43+yrVWPLRb2OUS
+yF1bxdhBTEWz0c7KtAhjmA==</ds:SignatureValue>
+    <ds:KeyInfo><ds:X509Data>
+<ds:X509Certificate>MIIExDCCA6ygAwIBAgIJAJsG6scSiBu+MA0GCSqGSIb3DQEBBQUAMIGcMQswCQYD
+VQQGEwJBVTETMBEGA1UECBMKU29tZS1TdGF0ZTEUMBIGA1UEBxMLU3ByaW5nZmll
+bGQxITAfBgNVBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDETMBEGA1UECxQK
+QXJyciAmIERlZTELMAkGA1UEAxMCTWUxHTAbBgkqhkiG9w0BCQEWDm1lQGV4YW1w
+bGUub3JnMB4XDTEzMDQxMTAwNTc1MloXDTQwMDgyNzAwNTc1MlowgZwxCzAJBgNV
+BAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMRQwEgYDVQQHEwtTcHJpbmdmaWVs
+ZDEhMB8GA1UEChMYSW50ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMRMwEQYDVQQLFApB
+cnJyICYgRGVlMQswCQYDVQQDEwJNZTEdMBsGCSqGSIb3DQEJARYObWVAZXhhbXBs
+ZS5vcmcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDZbhwD884KG1Aj
+ZENyOQw1TpqvMkkxMSIFQwSMPg81JIDgPifCXXHimiNheo99K4TnLAV4V+6sLsP8
+c2pQFr57mDSBo1x1JjSLR/LGD/scqQqzSXNXLNffF7FbH28/wL9+lBrMNxEh5LvT
+Cm+rmnAHdJjGK//BbLE7Vuek3irquUo3OF6HidORr2b86ec4I2gjien3kwgmYc0n
+7pxjReEeKqpoZ1ytB3PjDlAwJchCTs6i+bmQJ5xqyDn+OHTZutCVCE9DwBLThfGr
+2j+c7po42EucuS1GMEbHWbEcSCruhQY51iR+hc54TRc/GQbwfVyfOBMJ98s5TASA
+h0Sfw2DlAgMBAAGjggEFMIIBATAdBgNVHQ4EFgQUbuT5ExXORlqEIJRWCNvHgBig
+I9swgdEGA1UdIwSByTCBxoAUbuT5ExXORlqEIJRWCNvHgBigI9uhgaKkgZ8wgZwx
+CzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMRQwEgYDVQQHEwtTcHJp
+bmdmaWVsZDEhMB8GA1UEChMYSW50ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMRMwEQYD
+VQQLFApBcnJyICYgRGVlMQswCQYDVQQDEwJNZTEdMBsGCSqGSIb3DQEJARYObWVA
+ZXhhbXBsZS5vcmeCCQCbBurHEogbvjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEB
+BQUAA4IBAQABGQp+S8TgiPkMqOoHiosApgs/SttQfRZVlmhoqsJQ554xkui75PIo
+RMHd42Ft8PO5aQiqXe6sbGJh9e78pSqdhytrlwIf4OSomJ2ghRGKoPESBnMQGxYT
+vMx/0BvjVj8rNSFmVgTV+foSkJj2tJnr/9ZfYbRPybDRYvDhfnlE7SpfBanKK2r+
+VpLSlm1c6d5cYA5xKUtQgV9wKbMZLl5B75S3CXz1K6TujHN3K/B3a4Hc7AknWqFd
+qsWDWKJjyH3XzQkpPT00TqQOaM9gbYqsLXmiuLzYXV1JQhU1vs29mIIFbtQK0jYd
+YEcPFLoaQoTClLMt9R+6wrJvJ9loh6P8</ds:X509Certificate>
+</ds:X509Data></ds:KeyInfo></ds:Signature><samlp:Status><samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/></samlp:Status><saml:Assertion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" ID="_6f56d840d8df3697749fc533c9efac5866d5b88dde" Version="2.0" IssueInstant="2013-04-08T23:13:22Z"><saml:Issuer>http://localhost/simplesaml/saml2/idp/metadata.php</saml:Issuer><saml:Subject><saml:NameID SPNameQualifier="http://localhost:3000/" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient">_3c448bd72f639960c116dc6339a4930e7a4a3e9f3c</saml:NameID><saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"><saml:SubjectConfirmationData NotOnOrAfter="2013-04-08T23:18:22Z" Recipient="http://localhost:3000/saml-login" InResponseTo="83767498-2df3-4035-b0a5-8b40212b8fd7"/></saml:SubjectConfirmation></saml:Subject><saml:Conditions NotBefore="2013-04-08T23:12:52Z" NotOnOrAfter="2013-04-08T23:18:22Z"><saml:AudienceRestriction><saml:Audience>http://localhost:3000/</saml:Audience></saml:AudienceRestriction></saml:Conditions><saml:AuthnStatement AuthnInstant="2013-04-08T23:12:38Z" SessionNotOnOrAfter="2013-04-09T07:13:22Z" SessionIndex="_0c21a3bb421aefe16d6278b10c7924a5d66141922b"><saml:AuthnContext><saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef></saml:AuthnContext></saml:AuthnStatement><saml:AttributeStatement><saml:Attribute Name="email" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"><saml:AttributeValue xsi:type="xs:string">todd.thomas@openlogic.com</saml:AttributeValue></saml:Attribute></saml:AttributeStatement></saml:Assertion></samlp:Response>
