@@ -13,11 +13,12 @@ module SignedXml
         @start = here.document.root
       when /^#/
         id = uri.split('#').last
-        raise ArgumentError.new("XPointer expressions like #{id} are not yet supported") if id =~ /^xpointer/
+        raise ArgumentError, "XPointer expressions like #{id} are not yet supported" if id =~ /^xpointer/
         # TODO: handle ID attrs with names other than 'ID'
         @start = here.document.at_xpath("//*[@ID='#{id}']")
-        raise ArgumentError.new("no match found for ID #{id}") if @start.nil?
-      else raise ArgumentError.new("unsupported Reference URI #{uri}")
+        raise ArgumentError, "no match found for ID #{id}" if @start.nil?
+      else
+        raise ArgumentError, "unsupported Reference URI #{uri}"
       end
 
       @transforms = init_transforms
@@ -39,7 +40,8 @@ module SignedXml
           transforms << EnvelopedSignatureTransform.new
         when %r{^http://.*c14n}
           transforms << C14NTransform.new(method)
-        else raise ArgumentError.new("unknown transform method #{method}")
+        else
+          raise ArgumentError, "unknown transform method #{method}"
         end
       end
 

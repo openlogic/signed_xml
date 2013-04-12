@@ -11,14 +11,14 @@ module SignedXml
                 when "http://www.w3.org/TR/2001/REC-xml-c14n-20010315" then XML_C14N_1_0
                 when "http://www.w3.org/2001/10/xml-exc-c14n" then XML_C14N_EXCLUSIVE_1_0
                 when "http://www.w3.org/2006/12/xml-c14n11" then XML_C14N_1_1
-                else raise ArgumentError.new("unknown canonicalization method #{method}")
+                else raise ArgumentError, "unknown canonicalization method #{method}"
                 end
 
       @with_comments = !!with_comments
     end
 
     def apply(input)
-      raise ArgumentError.new("input #{input.inspect}:#{input.class} is not canonicalizable") unless input.respond_to?(:canonicalize)
+      raise ArgumentError, "input #{input.inspect}:#{input.class} is not canonicalizable" unless input.respond_to?(:canonicalize)
 
       input.canonicalize(method, nil, with_comments)
     end
