@@ -5,6 +5,7 @@ module SignedXml
     include DigestMethodResolution
 
     attr_accessor :here
+    attr_accessor :public_key
 
     def initialize(here)
       @here = here
@@ -55,11 +56,11 @@ module SignedXml
     end
 
     def x509_certificate
-      @x509_certificate ||= OpenSSL::X509::Certificate.new(certificate(x509_cert_data))
+      OpenSSL::X509::Certificate.new(certificate(x509_cert_data))
     end
 
     def x509_cert_data
-      @x509_cert_data ||= here.at_xpath("//ds:X509Certificate", ds: XMLDSIG_NS).text
+      here.at_xpath("//ds:X509Certificate", ds: XMLDSIG_NS).text
     end
 
     def certificate(data)

@@ -16,6 +16,8 @@ module SignedXml
     def is_verified?(opts = {})
       return false unless is_verifiable?
 
+      set_key_for_signatures(opts[:certificate]) if opts.has_key? :certificate
+
       signatures.all?(&:is_verified?)
     end
 
@@ -31,6 +33,12 @@ module SignedXml
         signatures << Signature.new(signature_node)
       end
       signatures
+    end
+
+    def set_key_for_signatures(x509_cert)
+      raise "#{x509_cert.inspect} doesn't implement public_key" unless x509_cert.respond_to? :public_key
+
+      signatures.each { |sig| sig.public_key = x509_cert.public_key }
     end
   end
 end

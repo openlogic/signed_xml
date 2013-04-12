@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<Response xmlns="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" IssueInstant="2003-04-17T00:46:02Z" Version="2.0" ID="_c7055387-af61-4fce-8b98-e2927324b306">
+  <saml:Issuer>https://www.opensaml.org/IDP"</saml:Issuer>
+  <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <ds:SignedInfo>
+      <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <ds:Reference URI="">
+        <ds:Transforms>
+          <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+        </ds:Transforms>
+        <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <ds:DigestValue>otynz9RFK0/mrkztml+POU0P4Rw=</ds:DigestValue>
+      </ds:Reference>
+    </ds:SignedInfo>
+    <ds:SignatureValue>fMniqoW/jSH7isH7ka+79+WYeiE4O63mA7TdrqOTrh8Q+JZQMsYsbAnx5E7Fo4Fy
++2yE/6XgCnEUFUvyWK9J5vaS+qzoOH5RZeSDcaSZeM5rP2hW5lf7iTQG/9wLsQUX
+KQRm1/pFgm7yetYr+gfK8yvUMR0pQc4h+vo4wKyQQYpHMlS97BWFoPEvi9F1M0Ld
+7NxHSHUFGTLqm+664ZTYI3z1k2kcgsuZpwHYCYOx185U383jnW1DruwLD8KE6Nxn
+Wd9imhxAiCV2CMQkjxIkrBM8du47rm+kDToYVgOn9gU15gYAmXUN/4MwF/yvYpQE
+sAs0VcNWD5PRjIviKbRh2Q==</ds:SignatureValue>
+  </ds:Signature>
+  <Status>
+    <StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+  </Status>
+  <Assertion xmlns="urn:oasis:names:tc:SAML:2.0:assertion" ID="_a75adf55-01d7-40cc-929f-dbd8372ebdfc" IssueInstant="2003-04-17T00:46:02Z" Version="2.0">
+    <Issuer>https://www.opensaml.org/IDP</Issuer>
+    <Subject>
+      <NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+        scott@example.org
+      </NameID>
+      <SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"/>
+    </Subject>
+    <Conditions NotBefore="2003-04-17T00:46:02Z" NotOnOrAfter="2003-04-17T00:51:02Z">
+      <AudienceRestriction>
+        <Audience>http://www.opensaml.org/SP</Audience>
+      </AudienceRestriction>
+    </Conditions>
+    <AuthnStatement AuthnInstant="2003-04-17T00:46:00Z">
+      <AuthnContext>
+        <AuthnContextClassRef>
+          urn:oasis:names:tc:SAML:2.0:ac:classes:Password
+        </AuthnContextClassRef>
+      </AuthnContext>
+    </AuthnStatement>
+  </Assertion>
+</Response>

@@ -5,17 +5,11 @@ describe SignedXml::Document do
 
   let(:resources_path) { File.join(File.dirname(__FILE__), 'resources') }
 
-  let(:unsigned_doc_nodes) do
-    xml_doc_from_file(File.join(resources_path, 'unsigned_saml_response.xml'))
+  let(:unsigned_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'unsigned_saml_response.xml')))
   end
 
-  let(:unsigned_doc) { SignedXml::Document.new(unsigned_doc_nodes) }
-
-  let(:signed_doc_nodes) do
-    xml_doc_from_file(File.join(resources_path, 'signed_saml_response.xml'))
+  let(:signed_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'signed_saml_response.xml')))
   end
-
-  let(:signed_doc) { SignedXml::Document.new(signed_doc_nodes) }
 
   it "knows which documents can be verified" do
     unsigned_doc.is_verifiable?.should be false
@@ -52,41 +46,49 @@ describe SignedXml::Document do
     signed_doc.is_verified?.should be true
   end
 
-  let(:same_doc_ref_nodes) do
-    xml_doc_from_file(File.join(resources_path, 'same_doc_reference.xml'))
+  let(:same_doc_ref_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'same_doc_reference.xml')))
   end
-
-  let(:same_doc_ref_doc) { SignedXml::Document.new(same_doc_ref_nodes) }
 
   it "verifies docs with same-document references" do
     same_doc_ref_doc.is_verified?.should be true
   end
 
-  let(:two_sig_nodes) do
-    xml_doc_from_file(File.join(resources_path, 'two_sig_doc.xml'))
+  let(:two_sig_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'two_sig_doc.xml')))
   end
-
-  let(:two_sig_doc) { SignedXml::Document.new(two_sig_nodes) }
 
   it "verifies docs with more than one signature" do
     two_sig_doc.is_verified?.should be true
   end
 
-  let(:badly_signed_doc_nodes) do
-    xml_doc_from_file(File.join(resources_path, 'badly_signed_saml_response.xml'))
+  let(:no_key_doc) do
+    SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'no_key_doc.xml')))
   end
 
-  let(:badly_signed_doc) { SignedXml::Document.new(badly_signed_doc_nodes) }
+  it "verifies docs lacking keys if X.509 cert is provided at runtime" do
+    no_key_doc.is_verified? certificate: test_certificate
+  end
+
+  let(:wrong_key_doc) do
+    SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'wrong_key_doc.xml')))
+  end
+
+  it "fails validation of a doc with the wrong key" do
+    wrong_key_doc.is_verified?.should be false
+  end
+
+  it "uses provided cert instead of embedded cert" do
+    wrong_key_doc.is_verified? certificate: test_certificate
+  end
+
+  let(:badly_signed_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'badly_signed_saml_response.xml')))
+  end
 
   it "fails verification of a badly-signed doc" do
     badly_signed_doc.is_verified?.should be false
   end
 
-  let(:incorrect_digest_doc_nodes) do
-    xml_doc_from_file(File.join(resources_path, 'incorrect_digest_saml_response.xml'))
+  let(:incorrect_digest_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'incorrect_digest_saml_response.xml')))
   end
-
-  let(:incorrect_digest_doc) { SignedXml::Document.new(incorrect_digest_doc_nodes) }
 
   it "fails verification of a doc with an incorrect Resource digest" do
     incorrect_digest_doc.is_verified?.should be false
