@@ -20,7 +20,7 @@ describe SignedXml::Document do
     unsigned_doc.is_verified?.should be false
   end
 
-  let(:test_certificate) { OpenSSL::X509::Certificate.new IO.read(File.join(resources_path, 'test_cert.pem')) }
+  let(:test_certificate) { OpenSSL::X509::Certificate.new File.read(File.join(resources_path, 'test_cert.pem')) }
 
   it "can read an embedded X.509 certificate" do
     signed_doc.send(:signatures).first.send(:x509_certificate).to_pem.should eq test_certificate.to_pem
