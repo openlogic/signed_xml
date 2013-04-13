@@ -5,10 +5,12 @@ describe SignedXml::Document do
 
   let(:resources_path) { File.join(File.dirname(__FILE__), 'resources') }
 
-  let(:unsigned_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'unsigned_saml_response.xml')))
+  let(:unsigned_doc) do
+    SignedXml::Document(File.read(File.join(resources_path, 'unsigned_saml_response.xml')))
   end
 
-  let(:signed_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'signed_saml_response.xml')))
+  let(:signed_doc) do
+    SignedXml::Document(File.read(File.join(resources_path, 'signed_saml_response.xml')))
   end
 
   it "knows which documents can be verified" do
@@ -46,14 +48,24 @@ describe SignedXml::Document do
     signed_doc.is_verified?.should be true
   end
 
-  let(:same_doc_ref_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'same_doc_reference.xml')))
+  let(:passed_in_nokogiri_doc) do 
+    SignedXml::Document(Nokogiri::XML(File.read(File.join(resources_path, 'signed_saml_response.xml'))))
+  end
+
+  it "works when passed a Nokogiri::XML::Document instead of a string" do
+    passed_in_nokogiri_doc.is_verified?.should be true
+  end
+
+  let(:same_doc_ref_doc) do
+    SignedXml::Document(File.read(File.join(resources_path, 'same_doc_reference.xml')))
   end
 
   it "verifies docs with same-document references" do
     same_doc_ref_doc.is_verified?.should be true
   end
 
-  let(:two_sig_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'two_sig_doc.xml')))
+  let(:two_sig_doc) do
+    SignedXml::Document(File.read(File.join(resources_path, 'two_sig_doc.xml')))
   end
 
   it "verifies docs with more than one signature" do
@@ -84,7 +96,7 @@ describe SignedXml::Document do
   end
 
   let(:wrong_key_doc) do
-    SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'wrong_key_doc.xml')))
+    SignedXml::Document(File.read(File.join(resources_path, 'wrong_key_doc.xml')))
   end
 
   it "fails validation of a doc with the wrong key" do
@@ -95,14 +107,16 @@ describe SignedXml::Document do
     wrong_key_doc.is_verified? test_certificate
   end
 
-  let(:badly_signed_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'badly_signed_saml_response.xml')))
+  let(:badly_signed_doc) do
+    SignedXml::Document(File.read(File.join(resources_path, 'badly_signed_saml_response.xml')))
   end
 
   it "fails verification of a badly-signed doc" do
     badly_signed_doc.is_verified?.should be false
   end
 
-  let(:incorrect_digest_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'incorrect_digest_saml_response.xml')))
+  let(:incorrect_digest_doc) do
+    SignedXml::Document(File.read(File.join(resources_path, 'incorrect_digest_saml_response.xml')))
   end
 
   it "fails verification of a doc with an incorrect Resource digest" do

@@ -5,8 +5,12 @@ module SignedXml
   class Document
     attr_reader :doc
 
-    def initialize(doc)
-      @doc = doc
+    def initialize(thing)
+      if thing.is_a? Nokogiri::XML::Document
+        @doc = thing
+      else
+        @doc = Nokogiri::XML(thing)
+      end
     end
 
     def is_verifiable?

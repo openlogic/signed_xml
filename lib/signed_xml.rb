@@ -4,6 +4,10 @@ require 'nokogiri'
 module SignedXml
   XMLDSIG_NS = "http://www.w3.org/2000/09/xmldsig#"
 
+  def self.Document(thing)
+    Document.new(thing)
+  end
+
   # Logging stuff borrowed from https://github.com/pezra/saml-sp
 
   # Logger that does nothing
