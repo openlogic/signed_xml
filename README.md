@@ -1,26 +1,44 @@
-# SignedXmlDocument
+SignedXml [![Build Status](https://travis-ci.org/toddthomas/signed_xml.png)](https://travis-ci.org/toddthomas/signed_xml)
+=========
 
-TODO: Write a gem description
+SignedXml is a Ruby implementation of [XML Signatures](http://www.w3.org/TR/xmldsig-core).
+Currently only verification of signed documents with enveloped-signature
+and c14n Transformations is supported.
 
-## Installation
+Installation
+------------
 
 Add this line to your application's Gemfile:
 
-    gem 'signed_xml_document'
+```ruby
+gem 'signed_xml'
+```
 
 And then execute:
 
-    $ bundle
+```shell
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install signed_xml_document
+```shell
+gem install signed_xml
+```
 
-## Usage
+Usage
+-----
 
-TODO: Write usage instructions here
+```ruby
+require 'signed_xml'
 
-## Contributing
+doc = Nokogiri::XML(File.read 'some_signed_doc.xml')
+signed_doc = SignedXml::Document.new(doc)
+signed_doc.is_verified?
+```
+
+Contributing
+------------
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
