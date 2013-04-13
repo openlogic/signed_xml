@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe SignedXml::Document do
   include SignedXml::DigestMethodResolution
+  include SignedXml::Fingerprinting
 
   let(:resources_path) { File.join(File.dirname(__FILE__), 'resources') }
 
@@ -73,14 +74,14 @@ describe SignedXml::Document do
   end
 
   let(:no_key_doc) do
-    SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'no_key_doc.xml')))
+    SignedXml::Document(File.read(File.join(resources_path, 'no_key_doc.xml')))
   end
 
   it "verifies docs lacking keys if X.509 cert is provided at runtime" do
     no_key_doc.is_verified? test_certificate
   end
 
-  let(:test_cert_fingerprint) { Digest::SHA1.hexdigest(test_certificate.to_der) }
+  let(:test_cert_fingerprint) { fingerprint(test_certificate.to_der) }
   let(:cert_store) { {test_cert_fingerprint => test_certificate} }
 
   it "uses a key matching the embedded key if a cert store is provided" do

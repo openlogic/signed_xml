@@ -3,6 +3,7 @@ require 'base64'
 module SignedXml
   class Signature
     include DigestMethodResolution
+    include Fingerprinting
     include Logging
 
     attr_accessor :here
@@ -81,7 +82,7 @@ module SignedXml
     end
 
     def x509_cert_fingerprint
-      @x509_cert_fingerprint ||= Digest::SHA1.hexdigest(x509_certificate.to_der)
+      @x509_cert_fingerprint ||= fingerprint(x509_certificate.to_der)
     end
 
     def x509_cert_data
