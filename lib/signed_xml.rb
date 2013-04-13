@@ -47,5 +47,5 @@ module SignedXml
   autoload :Base64Transform, 'signed_xml/base64_transform'
   autoload :C14NTransform, 'signed_xml/c14n_transform'
   autoload :EnvelopedSignatureTransform, 'signed_xml/enveloped_signature_transform'
-  autoload :Fingerprinting, 'signed_xml/Fingerprinting'
+  autoload :Fingerprinting, 'signed_xml/fingerprinting'
 end
