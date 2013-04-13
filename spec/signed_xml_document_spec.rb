@@ -65,7 +65,22 @@ describe SignedXml::Document do
   end
 
   it "verifies docs lacking keys if X.509 cert is provided at runtime" do
-    no_key_doc.is_verified? certificate: test_certificate
+    no_key_doc.is_verified? test_certificate
+  end
+
+  let(:test_cert_fingerprint) { Digest::SHA1.hexdigest(test_certificate.to_der) }
+  let(:cert_store) { {test_cert_fingerprint => test_certificate} }
+
+  it "uses a key matching the embedded key if a cert store is provided" do
+    signed_doc.is_verified?(cert_store).should be true
+  end
+
+  let(:another_test_cert) { OpenSSL::X509::Certificate.new File.read(File.join(resources_path, 'another_test_cert.pem')) }
+  let(:another_test_cert_fp) { Digest::SHA1.hexdigest(test_certificate.to_der) }
+  let(:another_cert_store) { {another_test_cert_fp => another_test_cert} }
+
+  it "fails validation if provided cert store does not contain a key matching the embedded key" do
+    signed_doc.is_verified?(another_cert_store).should be false
   end
 
   let(:wrong_key_doc) do
@@ -77,7 +92,7 @@ describe SignedXml::Document do
   end
 
   it "uses provided cert instead of embedded cert" do
-    wrong_key_doc.is_verified? certificate: test_certificate
+    wrong_key_doc.is_verified? test_certificate
   end
 
   let(:badly_signed_doc) do SignedXml::Document.new(xml_doc_from_file(File.join(resources_path, 'badly_signed_saml_response.xml')))

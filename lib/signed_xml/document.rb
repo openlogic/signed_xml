@@ -13,10 +13,16 @@ module SignedXml
       signatures.any?
     end
 
-    def is_verified?(opts = {})
+    def is_verified?(arg = nil)
       return false unless is_verifiable?
 
-      set_key_for_signatures(opts[:certificate]) if opts.has_key? :certificate
+      if arg.respond_to? :public_key
+        set_public_key_for_signatures(arg)
+      elsif arg.respond_to? :[]
+        set_certificate_store_for_signatures(arg)
+      elsif !arg.nil?
+        raise ArgumentError, "#{arg.inspect}:#{arg.class} must have a public key or be a hash of public keys"
+      end
 
       signatures.all?(&:is_verified?)
     end
@@ -35,10 +41,14 @@ module SignedXml
       signatures
     end
 
-    def set_key_for_signatures(x509_cert)
-      raise "#{x509_cert.inspect} doesn't implement public_key" unless x509_cert.respond_to? :public_key
+    def set_public_key_for_signatures(certificate)
+      signatures.each { |sig| sig.public_key = certificate.public_key }
+    end
 
-      signatures.each { |sig| sig.public_key = x509_cert.public_key }
+    def set_certificate_store_for_signatures(cert_store)
+      raise "#{cert_store.inspect} doesn't implement []" unless cert_store.respond_to? :[]
+
+      signatures.each { |sig| sig.certificate_store = cert_store }
     end
   end
 end
