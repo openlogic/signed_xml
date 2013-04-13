@@ -2,8 +2,20 @@ SignedXml [![Build Status](https://travis-ci.org/toddthomas/signed_xml.png)](htt
 =========
 
 SignedXml is a Ruby implementation of [XML Signatures](http://www.w3.org/TR/xmldsig-core).
-Currently only verification of signed documents with enveloped-signature
-and c14n Transformations is supported.
+
+Dependencies
+------------
+
+SignedXml requires and is in love with [Nokogiri](http://nokogiri.org).
+
+Limitations
+-----------
+
+They are legion. Currently only verification of signed documents is supported.
+Allowed transformations are enveloped-signature and c14n. Only same-document
+Reference URIs are supported, and of those only the null URI (URI="", or
+the whole document) and fragment URIs which specify a literal ID are supported.
+XPointer expressions are not supported.
 
 Installation
 ------------
