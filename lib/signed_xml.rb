@@ -8,35 +8,6 @@ module SignedXml
     Document.new(thing)
   end
 
-  # Logging stuff borrowed from https://github.com/pezra/saml-sp
-
-  # Logger that does nothing
-  BITBUCKET_LOGGER = Logger.new(nil)
-  class << BITBUCKET_LOGGER
-    def add(*args)
-    end
-  end
-
-  # The logger signed_xml should use
-  def self.logger
-    @@logger ||= BITBUCKET_LOGGER
-  end
-
-  # Set the logger for signed_xml
-  def self.logger=(a_logger)
-    @@logger = a_logger
-  end
-
-  module Logging
-    def logger
-      SignedXml.logger
-    end
-
-    def self.included(base)
-      base.extend(self)
-    end
-  end
-
   autoload :Transformable, 'signed_xml/transformable'
   autoload :Document, 'signed_xml/document'
   autoload :Signature, 'signed_xml/signature'
@@ -48,4 +19,5 @@ module SignedXml
   autoload :C14NTransform, 'signed_xml/c14n_transform'
   autoload :EnvelopedSignatureTransform, 'signed_xml/enveloped_signature_transform'
   autoload :Fingerprinting, 'signed_xml/fingerprinting'
+  autoload :Logging, 'signed_xml/logging'
 end

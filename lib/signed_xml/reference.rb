@@ -1,6 +1,7 @@
 module SignedXml
   class Reference
     include Transformable
+    include Logging
 
     attr_reader :here, :start
 
@@ -25,7 +26,9 @@ module SignedXml
     end
 
     def is_verified?
-      apply_transforms.chomp == digest_value
+      result = apply_transforms.chomp == digest_value
+      logger.info "verification failed for digest value [#{digest_value}]" unless result
+      result
     end
 
     private
