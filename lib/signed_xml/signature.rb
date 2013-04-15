@@ -18,6 +18,12 @@ module SignedXml
       is_signed_info_verified? && are_reference_digests_verified?
     end
 
+    def sign(private_key, certificate = nil)
+      compute_digests_for_references
+      sign_signed_info(private_key)
+      set_certificate_data(certificate)
+    end
+
     private
 
     def is_signed_info_verified?
@@ -30,6 +36,20 @@ module SignedXml
 
     def are_reference_digests_verified?
       references.all?(&:is_verified?)
+    end
+
+    def sign_signed_info(private_key)
+      value_node.content = Base64.encode64(private_key.sign(digester_for_id(signed_info.signature_method), signed_info.apply_transforms))
+      logger.debug "set signature value to [#{value}]"
+    end
+
+    def compute_digests_for_references
+      references.each(&:compute_and_set_digest_value)
+    end
+
+    def set_certificate_data(certificate)
+      x509_cert_data_node.content = certificate.to_pem.split("\n")[1..-2].join("\n") if certificate
+      logger.debug "set certificate data to [#{x509_cert_data}]"
     end
 
     def references
@@ -51,7 +71,11 @@ module SignedXml
     end
 
     def value
-      @value ||= here.at_xpath('//ds:SignatureValue', ds: XMLDSIG_NS).text.strip
+      @value ||= value_node.text.strip
+    end
+
+    def value_node
+      @value_node ||= here.at_xpath('//ds:SignatureValue', ds: XMLDSIG_NS)
     end
 
     def signed_info
@@ -88,7 +112,11 @@ module SignedXml
     end
 
     def x509_cert_data
-      here.at_xpath("//ds:X509Certificate", ds: XMLDSIG_NS).text
+      x509_cert_data_node.text
+    end
+
+    def x509_cert_data_node
+      @x509_cert_data_node ||= here.at_xpath("//ds:X509Certificate", ds: XMLDSIG_NS)
     end
 
     def certificate(data)

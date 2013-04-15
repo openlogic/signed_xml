@@ -31,6 +31,11 @@ module SignedXml
       result
     end
 
+    def compute_and_set_digest_value
+      digest_value_node.content = apply_transforms.chomp
+      logger.debug "set digest value to [#{digest_value}]"
+    end
+
     private
 
     def init_transforms
@@ -58,7 +63,11 @@ module SignedXml
     end
 
     def digest_value
-      @digest_value ||= here.at_xpath('ds:DigestValue', ds: XMLDSIG_NS).text.strip
+      @digest_value ||= digest_value_node.text.strip
+    end
+
+    def digest_value_node
+      @digest_value_node ||= here.at_xpath('ds:DigestValue', ds: XMLDSIG_NS)
     end
   end
 end

@@ -123,4 +123,14 @@ describe SignedXml::Document do
   it "fails verification of a doc with an incorrect Resource digest" do
     incorrect_digest_doc.is_verified?.should be false
   end
+
+  let(:signed_doc_template) do
+    SignedXml::Document(File.read(File.join(resources_path, 'saml_response_template.xml')))
+  end
+
+  let(:test_private_key) { OpenSSL::PKey::RSA.new File.read(File.join(resources_path, 'test_key.pem')) }
+
+  it "signs template documents" do
+    signed_doc_template.sign(test_private_key, test_certificate).is_verified?.should be true
+  end
 end

@@ -31,6 +31,15 @@ module SignedXml
       signatures.all?(&:is_verified?)
     end
 
+    def sign(private_key, certificate = nil)
+      signatures.each { |sig| sig.sign(private_key, certificate) }
+      self
+    end
+
+    def to_xml
+      doc.to_xml
+    end
+
     private
 
     def signatures

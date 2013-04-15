@@ -9,7 +9,7 @@ module SignedXml
     def apply_transforms
       transforms.reduce(start) do |input, transform|
         logger.debug "applying transform #{transform.inspect}"
-        logger.debug "input:  [#{start}]"
+        logger.debug "input:  [#{input}]"
 
         result = transform.apply(input)
         logger.debug "output: [#{result}]"
