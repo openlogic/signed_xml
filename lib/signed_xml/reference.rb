@@ -26,13 +26,13 @@ module SignedXml
     end
 
     def is_verified?
-      result = apply_transforms.chomp == digest_value
+      result = apply_transforms == digest_value
       logger.info "verification failed for digest value [#{digest_value}]" unless result
       result
     end
 
     def compute_and_set_digest_value
-      digest_value_node.content = apply_transforms.chomp
+      digest_value_node.content = apply_transforms
       logger.debug "set digest value to [#{digest_value}]"
     end
 

@@ -7,7 +7,7 @@ module SignedXml
     attr_reader :digest
 
     def initialize(method_id)
-      @digest = digester_for_id(method_id)
+      @digest = new_digester_for_id(method_id)
     end
 
     def apply(input)

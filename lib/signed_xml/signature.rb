@@ -29,7 +29,7 @@ module SignedXml
     def is_signed_info_verified?
       return false if public_key.nil?
 
-      result = public_key.verify(digester_for_id(signed_info.signature_method), decoded_value, signed_info.apply_transforms)
+      result = public_key.verify(new_digester_for_id(signed_info.signature_method), decoded_value, signed_info.apply_transforms)
       logger.info "verification of signature value [#{value}] failed" unless result
       result
     end
@@ -39,8 +39,14 @@ module SignedXml
     end
 
     def sign_signed_info(private_key)
-      value_node.content = Base64.encode64(private_key.sign(digester_for_id(signed_info.signature_method), signed_info.apply_transforms))
-      logger.debug "set signature value to [#{value}]"
+      data = signed_info.apply_transforms
+      logger.debug "data to sign: [#{data}]"
+      digester = new_digester_for_id(signed_info.signature_method)
+      logger.debug "digester: #{digester.inspect}"
+      sig_value = private_key.sign(digester, data)
+      logger.debug "signature value (before Base64 encoding): [#{sig_value}]"
+      value_node.content = Base64Transform.new.apply(sig_value)
+      logger.debug "SignatureValue set to [#{value}]"
     end
 
     def compute_digests_for_references

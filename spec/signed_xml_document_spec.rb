@@ -34,7 +34,7 @@ describe SignedXml::Document do
   end
 
   it "knows the signature method of the signed info" do
-    digester_for_id(signed_doc.send(:signatures).first.send(:signed_info).signature_method).class.should == OpenSSL::Digest::SHA1
+    new_digester_for_id(signed_doc.send(:signatures).first.send(:signed_info).signature_method).class.should == OpenSSL::Digest::SHA1
   end
 
   it "knows how to canonicalize its signed info" do

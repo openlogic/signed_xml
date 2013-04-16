@@ -3,6 +3,8 @@ require "options"
 
 module SignedXml
   class Document
+    include Logging
+
     attr_reader :doc
 
     def initialize(thing)
@@ -18,7 +20,10 @@ module SignedXml
     end
 
     def is_verified?(arg = nil)
-      return false unless is_verifiable?
+      unless is_verifiable?
+        logger.warn "document cannot be verified because it contains no <Signature> elements"
+        return false
+      end
 
       if arg.respond_to? :public_key
         set_public_key_for_signatures(arg)
