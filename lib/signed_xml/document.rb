@@ -27,7 +27,7 @@ module SignedXml
 
       if arg.respond_to? :public_key
         set_public_key_for_signatures(arg)
-      elsif arg.respond_to? :[]
+      elsif arg.respond_to? :has_key?
         set_certificate_store_for_signatures(arg)
       elsif !arg.nil?
         raise ArgumentError, "#{arg.inspect}:#{arg.class} must have a public key or be a hash of public keys"
@@ -64,8 +64,6 @@ module SignedXml
     end
 
     def set_certificate_store_for_signatures(cert_store)
-      raise "#{cert_store.inspect} doesn't implement []" unless cert_store.respond_to? :[]
-
       signatures.each { |sig| sig.certificate_store = cert_store }
     end
   end
