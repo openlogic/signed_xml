@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "nokogiri", "~> 1.5"
   gem.add_dependency "options"
 
+  gem.add_development_dependency "coveralls"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
 end

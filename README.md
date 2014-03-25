@@ -1,5 +1,7 @@
-SignedXml [![Build Status](https://travis-ci.org/toddthomas/signed_xml.png)](https://travis-ci.org/toddthomas/signed_xml)
+SignedXml
 =========
+[![Build Status](https://travis-ci.org/toddthomas/signed_xml.png)](https://travis-ci.org/toddthomas/signed_xml)  
+[![Coverage Status](https://coveralls.io/repos/toddthomas/signed_xml/badge.png)](https://coveralls.io/r/toddthomas/signed_xml)
 
 SignedXml is a Ruby implementation of [XML Signatures](http://www.w3.org/TR/xmldsig-core).
 
