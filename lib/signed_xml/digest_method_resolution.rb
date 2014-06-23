@@ -5,9 +5,12 @@ module SignedXml
     include OpenSSL
 
     def new_digester_for_id(id)
+      id = id && id =~ /sha(.*?)$/i && $1.to_i
       case id
-      when "http://www.w3.org/2000/09/xmldsig#sha1","http://www.w3.org/2000/09/xmldsig#rsa-sha1"
-        Digest::SHA1.new
+      when 256 then OpenSSL::Digest::SHA256.new
+      when 384 then OpenSSL::Digest::SHA384.new
+      when 512 then OpenSSL::Digest::SHA512.new        
+      when 1   then OpenSSL::Digest::SHA1.new
       else
         raise ArgumentError, "unknown digest method #{id}"
       end
