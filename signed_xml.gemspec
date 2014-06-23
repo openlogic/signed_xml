@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["todd.thomas@openlogic.com"]
   gem.description   = %q{XML Signature verification}
   gem.summary       = %q{Provides [incomplete] support for verification of XML Signatures <http://www.w3.org/TR/xmldsig-core>.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/openlogic/signed_xml"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
