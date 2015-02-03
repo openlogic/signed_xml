@@ -124,6 +124,14 @@ describe SignedXml::Document do
     incorrect_digest_doc.is_verified?.should be false
   end
 
+  let(:doc_w_inclusive_c14n) do
+    SignedXml::Document(File.read(File.join(resources_path, 'signed_saml_response_w_inclusive_c14n.xml')))
+  end
+
+  it 'verifies docs using inclusive c14n' do
+    expect(doc_w_inclusive_c14n.is_verified?).to be_true
+  end
+
   let(:signed_doc_template) do
     SignedXml::Document(File.read(File.join(resources_path, 'saml_response_template.xml')))
   end

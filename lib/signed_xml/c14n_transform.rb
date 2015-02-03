@@ -4,8 +4,9 @@ module SignedXml
 
     attr_reader :method
     attr_reader :with_comments
+    attr_reader :inclusive_namespaces
 
-    def initialize(method = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315")
+    def initialize(method = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315", inclusive_namespaces = [])
       method, with_comments = method.split('#')
       @method = case method
                 when "http://www.w3.org/TR/2001/REC-xml-c14n-20010315" then XML_C14N_1_0
@@ -15,12 +16,14 @@ module SignedXml
                 end
 
       @with_comments = !!with_comments
+
+      @inclusive_namespaces = inclusive_namespaces
     end
 
     def apply(input)
       raise ArgumentError, "input #{input.inspect}:#{input.class} is not canonicalizable" unless input.respond_to?(:canonicalize)
 
-      input.canonicalize(method, nil, with_comments)
+      input.canonicalize(method, inclusive_namespaces, with_comments)
     end
   end
 end

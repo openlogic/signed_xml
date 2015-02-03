@@ -47,7 +47,9 @@ module SignedXml
         when "http://www.w3.org/2000/09/xmldsig#enveloped-signature"
           transforms << EnvelopedSignatureTransform.new
         when %r{^http://.*c14n}
-          transforms << C14NTransform.new(method)
+          inclusive_namespaces_node = transform_node.at_xpath('.//ec:InclusiveNamespaces/@PrefixList', ec: XML_EXC_C14N_NS)
+          inclusive_namespaces = inclusive_namespaces_node ? inclusive_namespaces_node.content.split : []
+          transforms << C14NTransform.new(method, inclusive_namespaces)
         else
           raise ArgumentError, "unknown transform method #{method}"
         end
