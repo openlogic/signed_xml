@@ -129,7 +129,7 @@ describe SignedXml::Document do
   end
 
   it 'verifies docs using inclusive c14n' do
-    expect(doc_w_inclusive_c14n.is_verified?).to be_true
+    expect(doc_w_inclusive_c14n.is_verified?).to be true
   end
 
   let(:signed_doc_template) do
