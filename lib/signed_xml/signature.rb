@@ -118,7 +118,7 @@ module SignedXml
     end
 
     def x509_cert_data
-      x509_cert_data_node.text
+      x509_cert_data_node.text.strip
     end
 
     def x509_cert_data_node
