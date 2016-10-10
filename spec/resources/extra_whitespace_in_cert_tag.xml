@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<Response xmlns="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" IssueInstant="2003-04-17T00:46:02Z" Version="2.0" ID="_c7055387-af61-4fce-8b98-e2927324b306">
+  <saml:Issuer>https://www.opensaml.org/IDP"</saml:Issuer>
+  <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <ds:SignedInfo>
+      <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <ds:Reference URI="">
+        <ds:Transforms>
+          <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+        </ds:Transforms>
+        <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <ds:DigestValue>otynz9RFK0/mrkztml+POU0P4Rw=</ds:DigestValue>
+      </ds:Reference>
+    </ds:SignedInfo>
+    <ds:SignatureValue>fMniqoW/jSH7isH7ka+79+WYeiE4O63mA7TdrqOTrh8Q+JZQMsYsbAnx5E7Fo4Fy
++2yE/6XgCnEUFUvyWK9J5vaS+qzoOH5RZeSDcaSZeM5rP2hW5lf7iTQG/9wLsQUX
+KQRm1/pFgm7yetYr+gfK8yvUMR0pQc4h+vo4wKyQQYpHMlS97BWFoPEvi9F1M0Ld
+7NxHSHUFGTLqm+664ZTYI3z1k2kcgsuZpwHYCYOx185U383jnW1DruwLD8KE6Nxn
+Wd9imhxAiCV2CMQkjxIkrBM8du47rm+kDToYVgOn9gU15gYAmXUN/4MwF/yvYpQE
+sAs0VcNWD5PRjIviKbRh2Q==</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIExDCCA6ygAwIBAgIJAJsG6scSiBu+MA0GCSqGSIb3DQEBBQUAMIGcMQswCQYD
+VQQGEwJBVTETMBEGA1UECBMKU29tZS1TdGF0ZTEUMBIGA1UEBxMLU3ByaW5nZmll
+bGQxITAfBgNVBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDETMBEGA1UECxQK
+QXJyciAmIERlZTELMAkGA1UEAxMCTWUxHTAbBgkqhkiG9w0BCQEWDm1lQGV4YW1w
+bGUub3JnMB4XDTEzMDQxMTAwNTc1MloXDTQwMDgyNzAwNTc1MlowgZwxCzAJBgNV
+BAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMRQwEgYDVQQHEwtTcHJpbmdmaWVs
+ZDEhMB8GA1UEChMYSW50ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMRMwEQYDVQQLFApB
+cnJyICYgRGVlMQswCQYDVQQDEwJNZTEdMBsGCSqGSIb3DQEJARYObWVAZXhhbXBs
+ZS5vcmcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDZbhwD884KG1Aj
+ZENyOQw1TpqvMkkxMSIFQwSMPg81JIDgPifCXXHimiNheo99K4TnLAV4V+6sLsP8
+c2pQFr57mDSBo1x1JjSLR/LGD/scqQqzSXNXLNffF7FbH28/wL9+lBrMNxEh5LvT
+Cm+rmnAHdJjGK//BbLE7Vuek3irquUo3OF6HidORr2b86ec4I2gjien3kwgmYc0n
+7pxjReEeKqpoZ1ytB3PjDlAwJchCTs6i+bmQJ5xqyDn+OHTZutCVCE9DwBLThfGr
+2j+c7po42EucuS1GMEbHWbEcSCruhQY51iR+hc54TRc/GQbwfVyfOBMJ98s5TASA
+h0Sfw2DlAgMBAAGjggEFMIIBATAdBgNVHQ4EFgQUbuT5ExXORlqEIJRWCNvHgBig
+I9swgdEGA1UdIwSByTCBxoAUbuT5ExXORlqEIJRWCNvHgBigI9uhgaKkgZ8wgZwx
+CzAJBgNVBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMRQwEgYDVQQHEwtTcHJp
+bmdmaWVsZDEhMB8GA1UEChMYSW50ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMRMwEQYD
+VQQLFApBcnJyICYgRGVlMQswCQYDVQQDEwJNZTEdMBsGCSqGSIb3DQEJARYObWVA
+ZXhhbXBsZS5vcmeCCQCbBurHEogbvjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEB
+BQUAA4IBAQABGQp+S8TgiPkMqOoHiosApgs/SttQfRZVlmhoqsJQ554xkui75PIo
+RMHd42Ft8PO5aQiqXe6sbGJh9e78pSqdhytrlwIf4OSomJ2ghRGKoPESBnMQGxYT
+vMx/0BvjVj8rNSFmVgTV+foSkJj2tJnr/9ZfYbRPybDRYvDhfnlE7SpfBanKK2r+
+VpLSlm1c6d5cYA5xKUtQgV9wKbMZLl5B75S3CXz1K6TujHN3K/B3a4Hc7AknWqFd
+qsWDWKJjyH3XzQkpPT00TqQOaM9gbYqsLXmiuLzYXV1JQhU1vs29mIIFbtQK0jYd
+YEcPFLoaQoTClLMt9R+6wrJvJ9loh6P8
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature>
+  <Status>
+    <StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+  </Status>
+  <Assertion xmlns="urn:oasis:names:tc:SAML:2.0:assertion" ID="_a75adf55-01d7-40cc-929f-dbd8372ebdfc" IssueInstant="2003-04-17T00:46:02Z" Version="2.0">
+    <Issuer>https://www.opensaml.org/IDP</Issuer>
+    <Subject>
+      <NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
+        scott@example.org
+      </NameID>
+      <SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"/>
+    </Subject>
+    <Conditions NotBefore="2003-04-17T00:46:02Z" NotOnOrAfter="2003-04-17T00:51:02Z">
+      <AudienceRestriction>
+        <Audience>http://www.opensaml.org/SP</Audience>
+      </AudienceRestriction>
+    </Conditions>
+    <AuthnStatement AuthnInstant="2003-04-17T00:46:00Z">
+      <AuthnContext>
+        <AuthnContextClassRef>
+          urn:oasis:names:tc:SAML:2.0:ac:classes:Password
+        </AuthnContextClassRef>
+      </AuthnContext>
+    </AuthnStatement>
+  </Assertion>
+</Response>

@@ -29,6 +29,18 @@ describe SignedXml::Document do
     signed_doc.send(:signatures).first.send(:x509_certificate).to_pem.should eq test_certificate.to_pem
   end
 
+  let(:extra_whitespace_doc) do
+    SignedXml::Document(File.read(File.join(resources_path, 'extra_whitespace_in_cert_tag.xml')))
+  end
+
+  it "can read an embedded X.509 cert even if the tag contains extra whitespace" do
+    # Note: this only failed with one particular cert encountered so far, and that cert can't be included in this open-
+    # source project. Thus this test won't fail even if the fix is removed. Hopefully I eventually figure out what it is
+    # about that one weird cert that leads to the failure, so that I can generate an equivalent cert which can be used
+    # here.
+    expect(extra_whitespace_doc.send(:signatures).first.send(:x509_certificate).to_pem).to eq test_certificate.to_pem
+  end
+
   it "knows the public key of the embedded X.509 certificate" do
     signed_doc.send(:signatures).first.send(:public_key).to_s.should eq test_certificate.public_key.to_s
   end
