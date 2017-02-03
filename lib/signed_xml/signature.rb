@@ -88,15 +88,11 @@ module SignedXml
       @signed_info ||= SignedInfo.new(here.at_xpath("//ds:SignedInfo", ds: XMLDSIG_NS))
     end
 
-    def certificate_store
-      @certificate_store ||= {}
-    end
-
     def public_key
       # If the user provided a certificate store, we MUST only use a
       # key which matches the one in the signature's KeyInfo. Otherwise,
       # use the key in the signature.
-      @public_key ||= if certificate_store.any?
+      @public_key ||= unless certificate_store.nil?
                         logger.debug "using cert store #{certificate_store}"
                         if certificate_store.has_key? x509_cert_fingerprint
                           certificate_store[x509_cert_fingerprint].public_key
