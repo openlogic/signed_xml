@@ -7,12 +7,13 @@ module SignedXml
 
     attr_reader :doc
 
-    def initialize(thing)
+    def initialize(thing, id_attr: nil)
       if thing.is_a? Nokogiri::XML::Document
         @doc = thing
       else
         @doc = Nokogiri::XML(thing)
       end
+      @id_attr = id_attr
     end
 
     def is_verifiable?
@@ -54,7 +55,7 @@ module SignedXml
     def init_signatures
       signatures = []
       doc.xpath("//ds:Signature", ds: XMLDSIG_NS).each do |signature_node|
-        signatures << Signature.new(signature_node)
+        signatures << Signature.new(signature_node, id_attr: @id_attr)
       end
       signatures
     end

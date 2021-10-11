@@ -5,7 +5,7 @@ module SignedXml
 
     attr_reader :here, :start
 
-    def initialize(here)
+    def initialize(here, id_attr: nil)
       @here = here
 
       uri = here['URI']
@@ -15,9 +15,9 @@ module SignedXml
       when /^#/
         id = uri.split('#').last
         raise ArgumentError, "XPointer expressions like #{id} are not yet supported" if id =~ /^xpointer/
-        # TODO: handle ID attrs with names other than 'ID'
-        @start = here.document.at_xpath("//*[@ID='#{id}']")
-        raise ArgumentError, "no match found for ID #{id}" if @start.nil?
+        id_attr ||= 'ID'
+        @start = here.document.at_xpath("//*[@#{id_attr}='#{id}']")
+        raise ArgumentError, "no match found for #{id_attr} #{id}" if @start.nil?
       else
         raise ArgumentError, "unsupported Reference URI #{uri}"
       end

@@ -70,6 +70,10 @@ private_key = OpenSSL::PKey::RSA.new(File.new 'private_key.pem')
 certificate = OpenSSL::X509::Certificate.new(File.read 'certificate.pem')
 doc.sign(private_key, certificate)
 File.open('signed_doc.xml', 'w') { |file| file.puts doc.to_xml }
+
+# Custom ID attribute
+signed_document = SignedXml::Document(File.read('some_signed_doc.xml'), id_attr: "some_id")
+signed_doc.is_verified?
 ```
 
 Contributing
