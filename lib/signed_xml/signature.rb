@@ -10,8 +10,9 @@ module SignedXml
     attr_accessor :public_key
     attr_accessor :certificate_store
 
-    def initialize(here)
+    def initialize(here, id_attr: nil)
       @here = here
+      @id_attr = id_attr
     end
 
     def is_verified?
@@ -66,7 +67,7 @@ module SignedXml
       references = []
 
       here.xpath('//ds:Reference', ds: XMLDSIG_NS).each do |reference_node|
-        references << Reference.new(reference_node)
+        references << Reference.new(reference_node, id_attr: @id_attr)
       end
 
       references

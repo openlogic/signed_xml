@@ -14,6 +14,10 @@ describe SignedXml::Document do
     SignedXml::Document(File.read(File.join(resources_path, 'signed_saml_response.xml')))
   end
 
+  let(:signed_doc_custom_id) do
+    SignedXml::Document(File.read(File.join(resources_path, 'signed_saml_response_with_custom_attribute.xml')), id_attr: 'CustomID')
+  end
+
   it "knows which documents can be verified" do
     unsigned_doc.is_verifiable?.should be false
     signed_doc.is_verifiable?.should be true
@@ -57,11 +61,15 @@ describe SignedXml::Document do
     signed_doc.send(:signatures).first.send(:is_signed_info_verified?).should be true
   end
 
+  it "supports id attrs with names other than 'ID'" do
+    signed_doc_custom_id.sign(test_private_key, test_certificate).is_verified?.should be true
+  end
+
   it "verifies docs with one enveloped-signature Resource element and embedded X.509 key" do
     signed_doc.is_verified?.should be true
   end
 
-  let(:passed_in_nokogiri_doc) do 
+  let(:passed_in_nokogiri_doc) do
     SignedXml::Document(Nokogiri::XML(File.read(File.join(resources_path, 'signed_saml_response.xml'))))
   end
 
